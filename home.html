@@ -21,7 +21,10 @@
                     <div class="count">Count</div>
                 </div>
                 <div class="task">
-                    <div draggable="true" class="task1"></div>
+                    <div draggable="true" class="task1">
+                        <div class="taskName">Task 1</div>
+                        <div class=taskDescription>Task Description....</div>
+                    </div>
                 </div>
             </div>
             <div id="inprogress" class="inprogress common">
@@ -37,6 +40,13 @@
                 </div>
             </div>
         </section>
+    </section>
+    <section class="modal">
+        <div class="modal_in">
+            <input class= "task_name" type="text" placeholder="Add Task name...">
+            <input class="task_desc" type="text" placeholder="Add task Description...">
+            <button class="add_btn">Add new task</button>
+        </div>
     </section>
     <script src="home.js"></script>
 </body>
