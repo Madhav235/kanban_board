@@ -3,6 +3,10 @@ const todo = document.querySelector("#todo");
 const inprogress = document.querySelector("#inprogress");
 const done = document.querySelector("#done");
 const sections = document.querySelectorAll(".common");
+const add_btn = document.querySelector(".add");
+const modal = document.querySelector(".modal");
+const exit= document.querySelector(".modal_exit")
+console.log(modal)
 let dragElement = null;
 
 const tasks = document.querySelectorAll(".task");
@@ -46,6 +50,14 @@ function addDragEventsOnSections(columns){
         columns.classList.remove("hover_over");
     })
 }
+
+add_btn.addEventListener("click",(e)=>{
+    modal.classList.add("active");
+})
+
+exit.addEventListener("click",(e)=>{
+    modal.classList.remove("active");
+})
 
 sections.forEach((columns)=>{
     addDragEventsOnSections(columns);
