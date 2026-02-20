@@ -3,9 +3,12 @@ const todo = document.querySelector("#todo");
 const inprogress = document.querySelector("#inprogress");
 const done = document.querySelector("#done");
 const sections = document.querySelectorAll(".common");
-const add_btn = document.querySelector(".add");
+const add_new_task = document.querySelector(".add");
 const modal = document.querySelector(".modal");
-const exit= document.querySelector(".modal_exit")
+const exit= document.querySelector(".modal_exit");
+let task_desc= document.querySelector(".task_desc");
+let add_btn= document.querySelector(".add_btn");
+let task= document.querySelector(".task");
 console.log(modal)
 let dragElement = null;
 
@@ -51,12 +54,30 @@ function addDragEventsOnSections(columns){
     })
 }
 
-add_btn.addEventListener("click",(e)=>{
+add_new_task.addEventListener("click",(e)=>{
     modal.classList.add("active");
 })
 
 exit.addEventListener("click",(e)=>{
     modal.classList.remove("active");
+})
+
+add_btn.addEventListener("click",(e)=>{
+    let taskTitle= document.querySelector(".task_name").value;
+    let taskDescription= document.querySelector(".task_desc").value;
+    let div= document.createElement("div");
+    div.classList.add("task1");
+    div.setAttribute("draggable","true");
+    div.innerHTML=`<div class="taskName">${taskTitle}</div>
+                    <div class=taskDescription>${taskDescription}</div>`
+    task.appendChild(div);
+    modal.classList.remove("active");
+    div.addEventListener("drag", (e) => {
+        // console.log(e);
+        // console.log(task);
+        dragElement = task;
+    })
+
 })
 
 sections.forEach((columns)=>{
