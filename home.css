@@ -124,6 +124,8 @@ body {
     height: 22%;
     border-radius: 20px;
     cursor: grab;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .hover_over {

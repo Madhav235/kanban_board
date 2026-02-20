@@ -53,3 +53,29 @@ addNewTask.addEventListener("click",(e)=>{
 modalExit.addEventListener("click",(e)=>{
     modal.classList.remove("active");
 });
+
+// add new task to todo
+
+const taskTitle= document.querySelector(".task_name");
+const taskDescription= document.querySelector(".task_desc");
+const addButton= document.querySelector(".add_btn");
+
+addButton.addEventListener("click",(e)=>{
+    let title= taskTitle.value;
+    let description= taskDescription.value;
+    let div= document.createElement("div");
+    let name= document.createElement("div");
+    let desc= document.createElement("div");
+    const todo= document.querySelector(".todo");
+    div.classList.add("task");
+    name.classList.add("taskName");
+    desc.classList.add("taskDescription");
+    div.appendChild(name);
+    div.appendChild(desc);
+    div.setAttribute("draggable","true");
+    name.innerText= title;
+    desc.innerText= description;
+    todo.appendChild(div);
+    elementDragged(div);
+    modal.classList.remove("active");
+});
