@@ -40,5 +40,16 @@ sections.forEach((e)=>{
 });
 
 
-// add new task modal implementation
+// add new task modal visibility
 
+const addNewTask= document.querySelector(".add");
+const modal= document.querySelector(".modal");
+const modalExit= document.querySelector(".modal_exit");
+
+addNewTask.addEventListener("click",(e)=>{
+    modal.classList.add("active");
+});
+
+modalExit.addEventListener("click",(e)=>{
+    modal.classList.remove("active");
+});
