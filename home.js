@@ -75,12 +75,16 @@ addButton.addEventListener("click",(e)=>{
     let div= document.createElement("div");
     let name= document.createElement("div");
     let desc= document.createElement("div");
+    let deleteButton= document.createElement("button");
     const todo= document.querySelector(".todo");
     div.classList.add("task");
     name.classList.add("taskName");
     desc.classList.add("taskDescription");
+    deleteButton.classList.add("delete");
+    deleteButton.innerText= "Delete"
     div.appendChild(name);
     div.appendChild(desc);
+    div.appendChild(deleteButton);
     div.setAttribute("draggable","true");
     name.innerText= title;
     desc.innerText= description;
@@ -95,6 +99,7 @@ addButton.addEventListener("click",(e)=>{
 
     // removing modal
     updateCount();
+    deleteTaskTrack();
     modal.classList.remove("active");
 });
 
@@ -109,3 +114,34 @@ function updateCount(){
     count[1].innerText= inProgressCount.length;
     count[2].innerText= doneCount.length;
 }
+
+// delete button functionality
+
+function deleteTaskTrack(){
+    const todo= document.querySelector(".todo");
+    const inProgress= document.querySelector(".inprogress");
+    const done= document.querySelector(".done");
+    const todoDelete= todo.querySelectorAll(".delete");
+    const inProgressDelete= inProgress.querySelectorAll(".delete");
+    const doneDelete= done.querySelectorAll(".delete");
+    todoDelete.forEach((e)=>{
+        deleteButtonFunctionality(e);
+    });
+
+    inProgressDelete.forEach((e)=>{
+        deleteButtonFunctionality(e);
+    });
+
+    doneDelete.forEach((e)=>{
+        deleteButtonFunctionality(e);
+    });
+};
+
+function deleteButtonFunctionality(val){
+    val.addEventListener("click",(e)=>{
+        let taskToRemove= val.parentElement;
+        let taskColumnToRemove= taskToRemove.parentElement;
+        taskColumnToRemove.removeChild(taskToRemove);
+        updateCount();
+    });
+};
