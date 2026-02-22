@@ -104,8 +104,19 @@ addButton.addEventListener("click", (e) => {
     let title = taskTitle.value;
     let description = taskDescription.value;
 
+    // check if any field is empty
+    
+    if (taskTitle.value=="" || taskDescription.value==""){
+        alert("Fill both the fields");
+        const modalExit= document.querySelector(".modal_exit");
+        modalExit.click();
+    }else{
+        addElement();
+    }
+
     // creating task element dynamically
 
+function addElement(){
     let div = document.createElement("div");
     let name = document.createElement("div");
     let desc = document.createElement("div");
@@ -140,6 +151,12 @@ addButton.addEventListener("click", (e) => {
     addToLocalStorage(todo);
     updateCount();
     deleteTaskTrack();
+
+    // empty the input fields
+
+    taskTitle.value="";
+    taskDescription.value="";
+}
 });
 
 // update count
