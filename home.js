@@ -34,6 +34,7 @@ if (localStorage.getItem("tasks")) {
 }
 
 updateCount();
+
 // dashed hover effect and drag and drop functionality
 
 const task = document.querySelectorAll(".task");

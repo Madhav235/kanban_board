@@ -161,6 +161,10 @@ body {
     overflow-y: auto;
 }
 
+.modal{
+    display: none;
+}
+
 .modal.active {
     position: fixed;
     top: 0;
@@ -175,7 +179,7 @@ body {
     align-items: center;
 }
 
-.modal .modal_in {
+.modal.active .modal_in {
     width: 400px;
     height: 300px;
     background: rgb(38, 37, 37);
@@ -187,7 +191,7 @@ body {
     border-radius: 20px;
 }
 
-.modal .modal_in .task_name {
+.modal.active .modal_in .task_name {
     width: 340px;
     height: 70px;
     background: rgb(79, 79, 79);
@@ -199,7 +203,7 @@ body {
     color: white;
 }
 
-.modal .modal_in .task_desc {
+.modal.active .modal_in .task_desc {
     width: 340px;
     height: 90px;
     background-color: rgb(79, 79, 79);
@@ -215,7 +219,7 @@ body {
     padding-top: 5px;
 }
 
-.modal .modal_in .add_btn {
+.modal.active .modal_in .add_btn {
     width: 150px;
     height: 50px;
     background: rgb(79, 79, 79);
