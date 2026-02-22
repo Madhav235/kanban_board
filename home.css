@@ -40,9 +40,9 @@ body {
 .add {
     width: 250px;
     height: 70px;
-    background-color: rgb(155, 33, 33);
+    background-color: rgb(26, 26, 26);
     margin-right: 100px;
-    border: solid white 2px;
+    border: none;
     border-radius: 10px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     color: white;
@@ -65,12 +65,12 @@ body {
 .common {
     width: 30%;
     height: 95%;
-    /* background-color: red; */
+    background-color: rgb(26, 26, 26);
     border-radius: 50px;
-    border: solid 5px white;
     transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
     padding-left: 7px;
     padding-right: 7px;
+    overflow-y: auto;
 }
 
 .top {
@@ -120,7 +120,7 @@ body {
 }
 
 .main .task {
-    background-color: rgb(60, 58, 58);
+    background-color: rgb(46, 46, 46);
     width: 100%;
     height: 22%;
     border-radius: 20px;
@@ -136,7 +136,7 @@ body {
 
 .task .taskName {
     width: 30%;
-    height: 40%;
+    height: 25%;
     /* background-color: red; */
     padding-left: 5px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -144,6 +144,9 @@ body {
     font-weight: 800;
     color: white;
     padding-top: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .task .taskDescription {
@@ -154,6 +157,8 @@ body {
     font-size: 20px;
     color: rgb(122, 117, 117);
     padding-left: 5px;
+    word-wrap: break-word;
+    overflow-y: auto;
 }
 
 .modal.active {
@@ -204,6 +209,10 @@ body {
     font-size: 18px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     color: white;
+    overflow-y: auto;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+    padding-top: 5px;
 }
 
 .modal .modal_in .add_btn {
@@ -217,7 +226,7 @@ body {
     font-size: 18px;
 }
 
-.modal.active .modal_exit{
+.modal.active .modal_exit {
     position: fixed;
     top: 25px;
     left: 25px;
@@ -234,15 +243,15 @@ body {
     font-weight: 700;
 }
 
-.modal_exit:hover{
+.modal_exit:hover {
     cursor: pointer;
 }
 
-.delete{
-    width: 150px;
-    height: 55px;
+.delete {
+    width: 100px;
+    height: 40px;
     border-radius: 15px;
-    background-color: red;
+    background-color: rgb(242, 94, 94);
     border: none;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 20px;
@@ -251,6 +260,6 @@ body {
     justify-content: center;
     align-items: center;
     position: absolute;
-    bottom: 20px;
-    right: 20px;
+    top: 10px;
+    right: 10px;
 }
