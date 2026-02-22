@@ -1,6 +1,20 @@
+//global variables
+
 const todo = document.getElementById("todo");
 const inprogress = document.getElementById("inprogress");
 const done = document.getElementById("done");
+
+// create previous information if possible
+
+if (localStorage.getItem("tasks")){
+    const data= JSON.parse(localStorage.getItem("tasks"));
+
+    for (const a in data){
+        const column= document.querySelector(`#${a}`);
+        data[a].forEach    
+    }
+}
+
 // dashed hover effect and drag and drop functionality
 
 const task= document.querySelectorAll(".task");
@@ -36,6 +50,7 @@ function dragAndDropFunctionality(val){
         val.appendChild(draggedElement);
         val.classList.remove("hover_over");
         updateCount();
+        addToLocalStorage(val);
     });
 };
 
@@ -98,9 +113,14 @@ addButton.addEventListener("click",(e)=>{
     elementDragged(div);
 
     // removing modal
+
+    modal.classList.remove("active");
+
+    // essential functions call
+
+    addToLocalStorage(todo);
     updateCount();
     deleteTaskTrack();
-    modal.classList.remove("active");
 });
 
 // update count
@@ -110,7 +130,7 @@ function updateCount(){
     const inProgressCount= inprogress.querySelectorAll(".task");
     const doneCount= done.querySelectorAll(".task");
     const count= document.querySelectorAll(".count");
-    count[0].innerText= todoCount.length;
+    count[0].innerText= todoCount.length; 
     count[1].innerText= inProgressCount.length;
     count[2].innerText= doneCount.length;
 }
@@ -145,3 +165,24 @@ function deleteButtonFunctionality(val){
         updateCount();
     });
 };
+
+// local storage connection
+
+let taskData={}
+
+function addToLocalStorage(val){
+    const tasks= document.querySelectorAll(".task");
+    taskData[val.id]= Array.from(tasks).map((e)=>{
+        return  {
+            title: e.querySelector(".taskName"),
+            description: e.querySelector(".taskDescription")
+        }
+    });
+
+    localStorage.setItem("tasks",JSON.stringify(taskData));
+    console.log(taskData);
+};
+
+sections.forEach((e)=>{
+    addToLocalStorage(e);
+});
