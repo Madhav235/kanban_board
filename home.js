@@ -110,3 +110,108 @@ addButton.addEventListener("click", (e) => {
     if (taskTitle.value=="" || taskDescription.value==""){
         alert("Fill both the fields");
         const modalExit= document.querySelector(".modal_exit");
+        modalExit.click();
+    }else{
+        addElement();
+    }
+
+    // creating task element dynamically
+
+function addElement(){
+    let div = document.createElement("div");
+    let name = document.createElement("div");
+    let desc = document.createElement("div");
+    let deleteButton = document.createElement("button");
+    const todo = document.querySelector(".todo");
+    div.classList.add("task");
+    name.classList.add("taskName");
+    desc.classList.add("taskDescription");
+    deleteButton.classList.add("delete");
+    deleteButton.innerText = "Delete"
+    div.appendChild(name);
+    div.appendChild(desc);
+    div.appendChild(deleteButton);
+    div.setAttribute("draggable", "true");
+    name.innerText = title;
+    desc.innerText = description;
+
+    // appending to new element
+
+    todo.appendChild(div);
+
+    // tracking element
+
+    elementDragged(div);
+
+    // removing modal
+
+    modal.classList.remove("active");
+
+    // essential functions call
+
+    addToLocalStorage(todo);
+    updateCount();
+    deleteTaskTrack();
+
+    // empty the input fields
+
+    taskTitle.value="";
+    taskDescription.value="";
+}
+});
+
+// update count
+
+function updateCount() {
+    const todoCount = todo.querySelectorAll(".task");
+    const inProgressCount = inprogress.querySelectorAll(".task");
+    const doneCount = done.querySelectorAll(".task");
+    const count = document.querySelectorAll(".count");
+    count[0].innerText = todoCount.length;
+    count[1].innerText = inProgressCount.length;
+    count[2].innerText = doneCount.length;
+}
+
+// delete button functionality
+
+function deleteTaskTrack() {
+    const todo = document.querySelector(".todo");
+    const inProgress = document.querySelector(".inprogress");
+    const done = document.querySelector(".done");
+    const todoDelete = todo.querySelectorAll(".delete");
+    const inProgressDelete = inProgress.querySelectorAll(".delete");
+    const doneDelete = done.querySelectorAll(".delete");
+    todoDelete.forEach((e) => {
+        deleteButtonFunctionality(e);
+    });
+
+    inProgressDelete.forEach((e) => {
+        deleteButtonFunctionality(e);
+    });
+
+    doneDelete.forEach((e) => {
+        deleteButtonFunctionality(e);
+    });
+};
+
+function deleteButtonFunctionality(val) {
+    val.addEventListener("click", (e) => {
+        let taskToRemove = val.parentElement;
+        let taskColumnToRemove = taskToRemove.parentElement;
+        taskColumnToRemove.removeChild(taskToRemove);
+        updateCount();
+        addToLocalStorage();
+    });
+};
+
+// local storage connection
+
+let taskData = {}
+
+function addToLocalStorage() {
+
+    const data = {
+        todo: getTasks(todo),
+        inprogress: getTasks(inprogress),
+        done: getTasks(done)
+    };
