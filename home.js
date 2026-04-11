@@ -215,3 +215,13 @@ function addToLocalStorage() {
         inprogress: getTasks(inprogress),
         done: getTasks(done)
     };
+
+    localStorage.setItem("tasks", JSON.stringify(data));
+}
+
+function getTasks(section){
+    return Array.from(section.querySelectorAll(".task")).map(task => ({
+        title: task.querySelector(".taskName").textContent,
+        description: task.querySelector(".taskDescription").textContent
+    }));
+}
