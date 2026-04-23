@@ -10,7 +10,21 @@ if (localStorage.getItem("tasks")) {
     const data = JSON.parse(localStorage.getItem("tasks"));
 
     for (const a in data) {
-        const column = dtrue");
+        const column = document.querySelector(`#${a}`);
+        data[a].forEach((task) => {
+            let div = document.createElement("div");
+            let name = document.createElement("div");
+            let desc = document.createElement("div");
+            let deleteButton = document.createElement("button");
+            div.classList.add("task");
+            name.classList.add("taskName");
+            desc.classList.add("taskDescription");
+            deleteButton.classList.add("delete");
+            deleteButton.innerText = "Delete"
+            div.appendChild(name);
+            div.appendChild(desc);
+            div.appendChild(deleteButton);
+            div.setAttribute("draggable", "true");
             name.innerText = task.title;
             desc.innerText = task.description;
             column.appendChild(div);
